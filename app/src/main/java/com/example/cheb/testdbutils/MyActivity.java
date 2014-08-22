@@ -14,16 +14,15 @@ import static com.example.cheb.testdbutils.TestApplication.*;
 
 
 public class MyActivity extends Activity {
-    private static final String TAG = MyActivity.class.getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        dbUtils.deleteWhere(User.class, " id = 123");
         User user = new User(123, "Cheb","Cherkassy");
         dbUtils.add(user);
         //...
-        List<User> users =  dbUtils.getAll(User.class);
-        Log.i(TAG, users.toString());
+        dbUtils.getAllWhere("id  = 123", User.class);
+        dbUtils.getAll(User.class);
     }
 }
